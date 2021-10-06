@@ -1,0 +1,72 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { html } from 'lit-html';
+
+<Meta
+  title="Badge"
+  compoennt="my-badge"
+  argTypes={{
+    label: {
+      control: {
+        type: 'text'
+      },
+      description: 'Specify the label of the badge'
+    },
+    color: {
+      control: {
+        type: 'select'
+      },
+      options: ['connection', 'reliable'],
+      description: 'Specify the color of the badge',
+      table: {
+        defaultValue: {
+          summary: 'connection'
+        }
+      }
+    }
+  }}
+/>
+
+export const Template = ({label, color}) => html ` <my-badge label=${label} color=${color} /> `
+
+# Badge
+
+This is a badge
+
+<Canvas>
+  <Story
+    name="Connection"
+    args={{
+      label: 'Connection',
+      color: 'connection'
+    }}
+    parameters={{
+      docs: {
+        sources: {
+          code: '<my-badge label="Connection" color="connection"></my-badge>'
+        }
+      }
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Reliable"
+    args={{
+      label: 'Reliable',
+      color: 'reliable'
+    }}
+    parameters={{
+      docs: {
+        sources: {
+          code: '<my-badge label="Reliable" color="reliable"></my-badge>'
+        }
+      }
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Properties
+
+<ArgsTable story="Connection" />

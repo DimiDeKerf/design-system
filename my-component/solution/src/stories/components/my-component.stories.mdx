@@ -1,0 +1,57 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { html } from 'lit-html';
+
+<Meta
+  title="My component"
+  component="my-component"
+  argTypes={{
+    first: {
+      control: {
+        type: 'text',
+      },
+      description: 'Specify the first name of the component',
+    },
+    middle: {
+      control: {
+        type: 'text',
+      },
+      description: 'Specify the middle name of the component',
+    },
+    last: {
+      control: {
+        type: 'text',
+      },
+      description: 'Specify the last name of the component',
+    },
+  }}
+/>
+
+export const Template = ({ first, middle, last }) => html` <my-component .first=${first} .middle=${middle} .last=${last} /> `
+
+# My component
+
+> Hi, I am your component!
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      first: 'John',
+      middle: 'Frank',
+      last: 'Doe'
+    }}
+    parameters={{
+      docs: {
+        source: {
+          code: '<my-component first="John" middle="Frank" last="Doe"><my-component>',
+        }
+      }
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Properties
+
+<ArgsTable story="Default" />
